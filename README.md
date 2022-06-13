@@ -43,11 +43,11 @@ First, we use EOG signal to identify eye blink or movement artifacts.
 As we can see, eye-related artifacts happened around 2500 seconds. Based on the knowledge we learned from other papers and the class, we choose to use ICA to decompose the raw EEG signals here. ICA is a method for finding underlying factors from multivariate statistical data. Here we use it to decompose the artifact-related components, and then reconstruct the EEG signals with artifact-free components.
 * Raw EEG signals
 
-    ![](https://i.imgur.com/tPWwuqn.png =400x)
+![](https://i.imgur.com/tPWwuqn.png =400x)
 
 * Reconstructed EEG signals
 
-    ![](https://i.imgur.com/tNmtoq2.png =400x)
+![](https://i.imgur.com/tNmtoq2.png =400x)
 
 ### Artifact Subspace Reconstruction (ASR)
 
@@ -55,11 +55,11 @@ ASR is an adaptive method for the online or offline correction of artifacts comp
     
 * Raw EEG wave
 
-    ![](https://i.imgur.com/PmkjntV.png =400x)
+![](https://i.imgur.com/PmkjntV.png =400x)
 
 * EEG wave applied ASR
 
-    ![](https://i.imgur.com/cvaSbDu.png =400x)
+![](https://i.imgur.com/cvaSbDu.png =400x)
 
 ### Fast Fourier transform (FFT)
 FFT is an algorithm that calculates the discrete Fourier transform (DFT) of some sequence, and it can be used to transform the structure of the cycle of a waveform into sine components.
