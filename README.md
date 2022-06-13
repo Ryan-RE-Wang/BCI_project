@@ -1,3 +1,4 @@
+# BCI_project
 ## Dataset
 
 As we know, some sleep disorders, like obstructive sleep apnea (OSA), can lead to severe consequences. Our goal is to use EEG data to classify different apnea, and we are the first one who tries to use Nationwide Children’s Hospital (NCH) Sleep DatabBank to focus on this topic.
@@ -27,8 +28,7 @@ Before digging into this project, we do some paper surveys to follow up on the n
 * **Machine Learning based Diagnosis of Diseases Using the Unfolded EEG Spectra: Towards an Intelligent Software Sensor**
 
     This paper presents the idea to unfold the EEG standard bandwidths in a more fine-graded equidistant 99-point spectrum to improve accuracy when diagnosing diseases. What's more, they also replace the hard-coded equidistant 99-point spectrum with a flexibly-grading spectrum to further improve the results. Although the machine learning method they use is still random forest, this novel pre-processing step enhances the accuracy.
-    
-    ![](https://i.imgur.com/gWrRJjf.png =500x)
+<img src="https://i.imgur.com/gWrRJjf.png" height="300px" width="480px" />
 
 * **Comparison of Motor Imagery EEG Classification using Feedforward and Convolutional Neural Network**
 
@@ -38,16 +38,18 @@ Before digging into this project, we do some paper surveys to follow up on the n
 
 ### Remove eye-related artifacts
 First, we use EOG signal to identify eye blink or movement artifacts.
-![](https://i.imgur.com/4r0PA85.png =400x)
+
+<img src="https://i.imgur.com/4r0PA85.png" height="300px" width="480px" />
 
 As we can see, eye-related artifacts happened around 2500 seconds. Based on the knowledge we learned from other papers and the class, we choose to use ICA to decompose the raw EEG signals here. ICA is a method for finding underlying factors from multivariate statistical data. Here we use it to decompose the artifact-related components, and then reconstruct the EEG signals with artifact-free components.
+
 * Raw EEG signals
 
-![](https://i.imgur.com/tPWwuqn.png =400x)
+<img src="https://i.imgur.com/tPWwuqn.png" height="300px" width="480px" />
 
 * Reconstructed EEG signals
 
-![](https://i.imgur.com/tNmtoq2.png =400x)
+<img src="https://i.imgur.com/tNmtoq2.png" height="300px" width="480px" />
 
 ### Artifact Subspace Reconstruction (ASR)
 
@@ -55,18 +57,18 @@ ASR is an adaptive method for the online or offline correction of artifacts comp
     
 * Raw EEG wave
 
-![](https://i.imgur.com/PmkjntV.png =400x)
+<img src="https://i.imgur.com/PmkjntV.png" height="300px" width="480px" />
 
 * EEG wave applied ASR
 
-![](https://i.imgur.com/cvaSbDu.png =400x)
+<img src="https://i.imgur.com/cvaSbDu.png" height="300px" width="480px" />
 
 ### Fast Fourier transform (FFT)
 FFT is an algorithm that calculates the discrete Fourier transform (DFT) of some sequence, and it can be used to transform the structure of the cycle of a waveform into sine components.
 
 We use FFT to transform our data in this project. First, we concatenate 7 artifact free channels, and then apply fast fourier transformation to get the frequency domain data.
 
-![](https://i.imgur.com/u7ykXRW.png=400x)
+<img src="https://i.imgur.com/u7ykXRW.png" height="300px" width="480px" />
 
 ### Statistical features of EEG wave
 
@@ -77,6 +79,8 @@ Use wavedec function provided by pywt library to decode the coefficients of the 
 ### Random Forest
 
 Random forest is a Supervised Machine Learning Algorithm that is used widely in Classification and Regression problems. It builds decision trees on different samples and takes their majority vote for classification and average in case of regression.
+
+Several existing researches also use random forest as their predicting model. Since random forest can highlight the importance of specific fearutes, this algorithm is more suitable than KNN or SVM in BCI field. 
 
 ## Validation methods
 
@@ -104,36 +108,41 @@ We use Area under the curve (AUC) as our evaluation metric. It is one of the mos
 
 * Visualization
 
-    * Raw EEG wave as input
-    
-    ![](https://i.imgur.com/QYOTR1i.png =400x)
+   * Raw EEG wave as input
+ 
+ <img src="https://i.imgur.com/QYOTR1i.png" height="300px" width="480px" />
 
-    * Raw EEG wave with FFT as input
-    
-    ![](https://i.imgur.com/1vSAtAN.png =400x)
+   * Raw EEG wave with FFT as input 
+ 
+ <img src="https://i.imgur.com/1vSAtAN.png" height="300px" width="480px" />
 
-    * ICA-processed EEG wave as input 
-    
-    ![](https://i.imgur.com/rYbHpqa.pngc =400x)
+   * ICA-processed EEG wave as input 
+ 
+ <img src="https://i.imgur.com/rYbHpqa.png" height="300px" width="480px" />
 
-    * ICA-processed EEG wave with FFT as input
+   * ICA-processed EEG wave with FFT as input
+ 
+ <img src="https://i.imgur.com/E309f8v.png" height="300px" width="480px" />
     
-    ![](https://i.imgur.com/E309f8v.png =400x)
+   * ASR-processed EEG wave as input
+ 
+ <img src="https://i.imgur.com/i0ojjUX.png" height="300px" width="480px" />
+
+   * ASR-processed EEG wave with FFT as input
+ 
+ <img src="https://i.imgur.com/LSEVyVg.png" height="300px" width="480px" />
+
+   * Statistical features from raw EEG wave 
+ 
+ <img src="https://i.imgur.com/Im6BMKL.png" height="300px" width="480px" />
+
+   * Statistical features from ICA-processed EEG wave
+ 
+ <img src="https://i.imgur.com/viu8Aqi.png" height="300px" width="480px" />
     
-    * ASR-processed EEG wave as input
-    ![](https://i.imgur.com/i0ojjUX.png =400x)
-
-    * ASR-processed EEG wave with FFT as input
-    ![](https://i.imgur.com/LSEVyVg.png =400x)
-
-    * Statistical features from raw EEG wave 
-    ![](https://i.imgur.com/Im6BMKL.png =400x)
-
-    * Statistical features from ICA-processed EEG wave
-    ![](https://i.imgur.com/viu8Aqi.png =400x)
-    
-    * Statistical features from ASR-processed EEG wave
-    ![](https://i.imgur.com/aPmkTO3.png =400x)
+   * Statistical features from ASR-processed EEG wave
+ 
+ <img src="https://i.imgur.com/aPmkTO3.png" height="300px" width="480px" />
 
 
 ## Discussion & Limitation
