@@ -1,7 +1,7 @@
 # BCI_project
 
 ## Demo Link
-[https://youtube/062A_jYKRQY](https://)
+[https://youtu.be/062A_jYKRQY](https://)
 ## Dataset
 
 As we know, some sleep disorders, like obstructive sleep apnea (OSA), can lead to severe consequences. Our goal is to use EEG data to classify different apnea, and we are the first one who tries to use Nationwide Children’s Hospital (NCH) Sleep DatabBank to focus on this topic.
